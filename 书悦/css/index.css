@@ -1,0 +1,428 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li {
+    list-style: none;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Cinzel", serif;
+}
+
+#container {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+}
+
+/* 导航栏 */
+#container .navHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 5vh;
+    line-height: 5vh;
+    color: #fff;
+    background-color: rgba(10,10,10,.6);
+    margin-bottom: 0;
+    border-radius: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.navHeader span {
+    margin-left: 7%;
+    float: left;
+    display: inline-block;
+}
+.navHeader ul {
+    float: right;
+    margin-right: 10%;
+}
+.navHeader ul li {
+    height: 5vh;
+    margin: 0 15px 2px 15px;
+    float: left;
+}
+.navHeader ul li:hover {
+    color: #e7e1cd;
+    border-bottom: 1.5px solid #fff;
+}
+
+.navHeader ul li:nth-child(4) {
+    margin-left: 40px;
+    border-bottom: 0;
+}
+.navHeader ul li:nth-child(4) a {
+    color: #fff;
+    text-decoration: none;
+}
+.navHeader ul li:nth-child(4) a:hover {
+    color: #c8e5bc;
+}
+
+
+/* 动态 */
+main {
+    display: flex;
+    justify-content: center;
+}
+.book {
+    --book-height: 60vh;
+    --book-ratio: 1.4;
+    font-size: 12px;
+}
+
+.book > div {
+    height: var(--book-height);
+    width: calc(var(--book-height) / var(--book-ratio));
+    overflow: auto;
+    background-color: #0a0a0a;
+    transform: scale(0.9);
+    border-radius: 6px;
+    transform-origin: left;
+}
+
+.book-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, black 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, black 25%, transparent 25%),
+    linear-gradient(45deg, black 25%, transparent 25%);
+    background-size: 2em 2em;
+    background-color: #232323;
+    color: white;
+    transition: transform 2s;
+}
+
+.book-cover::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    background-color: #b11509;
+}
+
+.book-cover h1 {
+    font-family: "Petemoss", cursive;
+    font-size: 20px;
+    font-weight: 300;
+    color: #dbd75d;
+}
+
+.book-cover h2 {
+    font-size: 16px;
+}
+
+.separator {
+    --separator-size: 8px;
+    width: var(--separator-size);
+    height: var(--separator-size);
+    background-color: #dbd75d;
+    margin: 50px auto 60px auto;
+    border-radius: 50%;
+    position: relative;
+}
+
+.separator::after,
+.separator::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    background-color: white;
+    height: 2px;
+    top: calc(50% - 1px);
+}
+.separator::after {
+    left: 15px;
+}
+.separator::before {
+    right: 15px;
+}
+.book-content {
+    background-image: url("../img/bgImg/reader.jpg");
+    transform: scale(0.9) translateY(30px);
+    background-color: white !important;
+    transition: all 0.3s 1s;
+}
+.book-content h3,
+.book-content p {
+    opacity: 0;
+    transition: all 0.3s 0.3s;
+}
+.book-content h3 {
+    padding: 30px;
+}
+.book-content p {
+    padding: 0px 30px 10px 30px;
+    text-align: justify;
+    font-size: 14px;
+}
+.book-cover > div {
+    transition: opacity 0s 0.6s;
+}
+.book:hover > .book-cover {
+    transform: rotateY(180deg) scale(0.9);
+}
+.book:hover > .book-cover > div {
+    opacity: 0;
+}
+.book:hover > .book-content {
+    transform: scale(0.9) translateY(0px);
+}
+.book:hover > .book-content h3,
+.book:hover > .book-content p {
+    opacity: 1;
+}
+
+
+
+
+section,
+#footer {
+    height: 100vh;
+    position: relative;
+    color: rgba(255, 255, 255, .8);
+    font-size: 10vh;
+    /* 设置字体 */
+    font-family: 'modern_no._20regular',
+        serif;
+    /* 文字阴影 */
+    text-shadow: 4px 4px rgb(46, 43, 43);
+    /* 弹性布局 */
+    display: flex;
+    /* 水平居中 */
+    justify-content: center;
+    /* 垂直居中 */
+    align-items: center;
+}
+
+#footer {
+    background-color: #c0b5aa;
+    height: 50vh;
+    color: #fff;
+    font-size: 20vh;
+}
+
+.img {
+    overflow: hidden;
+    /* 背景图片不重复 */
+    background-repeat: no-repeat;
+    /* 背景图片位置：居中 */
+    background-position: center;
+    /* 背景图片固定 */
+    background-attachment: fixed;
+    background-size: cover;
+    /* 禁止用户误选中 */
+    user-select: none;
+
+}
+
+
+#img-one {
+    background-image: url(../img/bgImg/img2.jpg);
+    background-size: cover;
+}
+
+
+#img-two {
+    background-image: url(../img/bgImg/img4.jpg);
+}
+
+.content-one {
+    background: url(../img/bgImg/img1.jpg) no-repeat fixed center;
+    background-size: cover;
+}
+
+.content-two {
+    background: url(../img/bgImg/img2.jpg) no-repeat fixed center;
+    background-size: cover;
+}
+
+.content-three {
+    background: url(../img/bgImg/img3.jpg) no-repeat fixed center;
+    background-size: cover;
+}
+
+.text-box {
+    width: 100%;
+    height: 50%;
+    /* 绝对定位 */
+    position: absolute;
+    bottom: 25%;
+    /* 文字居中 */
+    text-align: center;
+    background-color: rgba(0, 0, 0, .3);
+    /* 旋转中心 */
+    transform-origin: center bottom;
+    /* 扭曲斜切 */
+    transform: skew(0, -8deg);
+
+}
+
+.text-box .cnt {
+    display: inline-block;
+    text-align: right;
+    margin: 40px 0 10px;
+    width: 90%;
+    max-width: 990px;
+    transform-origin: right bottom;
+    transform: skew(0, 8deg);
+}
+
+.cnt h2 {
+    margin-top: 100px;
+    font-size: 36px;
+    font-family: 'modern_no._20regular',
+        serif;
+    text-shadow: 1px 0px 0px #323232;
+    letter-spacing: 0.3em;
+    /* 大写字母 */
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.cnt p {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.cnt a.btn {
+    font-size: 90%;
+    font-family: 'modern_no._20regular',
+        serif;
+    letter-spacing: 0.3em;
+    text-shadow: 1px 0px 0px black;
+    line-height: 2.8;
+    display: inline-block;
+    background-color: #eaeaea;
+    color: #000;
+    border: 3px solid #000;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0 20px;
+
+}
+
+
+h4 {
+    font-size: 26px;
+    line-height: 1px;
+    font-family: 'Amatic SC', cursive !important;
+}
+
+.color1{color:#1BBC9B}/*MOUNTAIN MEADOW*/
+.color2{color:#C0392B/*TALL POPPY*/}
+
+
+.card {
+    color: #013243; /*SHERPA BLUE*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    background: #e0e1dc;
+    transform-style: preserve-3d;
+    transform: translate(-50%,-50%) perspective(2000px);
+    box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+    transition: 1s;
+}
+
+.card:hover {
+    transform: translate(-50%,-50%) perspective(2000px) rotate(15deg) scale(1.2);
+    box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+}
+
+.card:before {
+    content:'';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #BAC1BA;
+    transform-origin: bottom;
+    transform: skewX(-45deg);
+}
+
+.card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 5px;
+    height: 100%;
+    background: #92A29C;
+    transform-origin: left;
+    transform: skewY(-45deg);
+}
+
+.card .imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left;
+    transition: .7s;
+}
+
+.card .bark {
+    position: absolute;
+    background: #e0e1dc;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .7s;
+}
+
+.card .imgBox img {
+    min-width: 250px;
+    max-height: 400px;
+}
+
+.card:hover .imgBox {
+    transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+    opacity: 1;
+    transition: .6s;
+    box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+}
+
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 0 0 10px;
+    z-index: -1;
+    margin-top: 70px;
+}
+
+.card .details p {
+    font-size: 15px;
+    line-height: 5px;
+    transform: rotate(-10deg);
+    padding: 0 0 0 20px;
+}
+
+.card .details h4 {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}

@@ -1,0 +1,531 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../img/bgImg/bg1.png") repeat;
+    background-size: 100% 100%;
+}
+
+.icon {
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    font-size: .7em;
+}
+
+
+/* 头部header 搜索区域 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 15%;
+    width: 66vw;
+    height: 43px;
+    background-color: rgba(255,255,255,.4);
+    backdrop-filter: blur(50px);
+    /*background-color: skyblue;*/
+    border-bottom: 1px solid #181818;
+    z-index: 2;
+}
+.header .searchform{
+    margin: 0 auto;
+    width: 50%;
+    height: 100%;
+}
+.searchform input {
+    width: 400px;
+    height: 42px;
+    border: 1px solid blue;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    text-indent: 10px;
+
+}
+.searchform button {
+    width: 60px;
+    height: 42px;
+    border: none;
+    border-radius: 5px;
+    background: #4B60E2;
+    vertical-align: middle;
+    outline: none;
+    color: white;
+    font-size: 16px;
+}
+
+
+
+/* 侧边导航栏 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15%;
+    /*background-color: skyblue;*/
+    z-index: 1;
+}
+#checkbox {
+    display: none;
+}
+.navbar label {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 5%;
+    height: 43px;
+    line-height: 43px;
+  /*  color: rgba(0,0,0,.5);*/
+   /* background-color: purple;*/
+    padding-left: 10px;
+    /*border: 1px solid #d9dee4;*/
+    cursor: pointer;
+    transition: all 0.5s; /*动画过渡*/
+}
+
+.navbar ul {
+    width: 70px;
+    height: 100vh;
+    background-color: #2a3f54;
+    transition: all 0.5s;
+    overflow: hidden;
+}
+.navbar ul li {
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.navbar ul li:first-child {
+    display: flex; /*弹性布局*/
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+.navbar ul li:first-child .icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    margin-left: 5px;
+    /*background-color: mediumpurple;*/
+}
+.navbar ul li:first-child span {
+    color: #fff;
+    white-space: nowrap;/*文字禁止换行*/
+    padding-left: 10px;
+    display: none;
+}
+
+.navbar ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;/*垂直排列*/
+    width: 100%;
+    height: 100%;
+    color: #d1d1d1;
+}
+
+.navbar ul li a svg {
+    font-size: .7em;
+    margin-bottom: 10px;
+}
+
+.navbar ul li a span {
+    font-size: 12px;
+    white-space: nowrap;
+}
+.navbar ul li a:hover {
+    color: #fff;
+    background-color: #35495d;
+}
+
+/*判断选中与未选中*/
+.navbar input:checked + label {
+    left: 200px;
+}
+.navbar input:checked ~ ul {
+    width: 200px;
+}
+.navbar input:checked ~ ul li:first-child {
+    justify-content: flex-start;
+}
+.navbar input:checked ~ ul li:first-child span {
+    display: block;
+}
+.navbar input:checked ~ ul li a {
+    flex-direction: row;  /*水平排列  row行   column列 */
+    justify-content: flex-start;
+}
+.navbar input:checked ~ ul li a svg {
+    font-size: 1em;
+    margin: 0 25px 0 30px;
+}
+.navbar input:checked ~ ul li a span {
+    font-size: 14px;
+}
+
+
+/* main 主内容区域 */
+.main {
+    position: absolute;
+    top: 60px;
+    left: 15%;
+    width: 66%;
+    height: 100vh;
+    /*background-color: purple;*/
+    z-index: 1;
+    /*overflow: hidden;*/
+}
+
+.card {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border: 1px solid #2a3f54;
+    text-align: center;
+    font-size: 18px;
+    color: floralwhite;
+    background: rgba(40,40,40,.6);
+}
+/* hot图片 */
+.card .hotImg{
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    top: 0;
+    background-size: 100% 100%;
+    left: 0;
+}
+.card .img-box {
+    position: absolute;
+    top: 1%;
+    left: 27%;
+    width: 40%;
+    height: auto;
+
+}
+.card .img-box img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.card .bookMsg {
+    position: absolute;
+    top: 50%;
+    margin-top: 10px;
+    height: 45%;
+    width: auto;
+}
+.card .bookMsg h3{
+    height: 25px;
+    margin-bottom: 8px;
+}
+.card .bookMsg p{
+    text-align: left;
+    font-size: 14px;
+    margin: 3px 2px 0 0;
+}
+.card .bookMsg .button {
+    width: 90px;
+    height: 30px;
+    color: #F7F7F7;
+    font-size: 16px;
+    font-weight: 540;
+    background-color: #4B60E2;
+    border: 1px solid skyblue;
+    border-radius: 15px;
+    margin-top: 8px;
+}
+.card .bookMsg .button:hover {
+    background-color: #4B40E2;
+}
+/* book comment 书籍评论区 */
+.card .bookComment {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+}
+.bookComment img {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.main .htitle {
+    display: inline-block;
+    width: 100px;
+    height: 16px;
+    left: 10%;
+    margin: 5px 0 0 0;
+}
+/* 今日推荐 */
+.NowReCom {
+    position: relative;
+    top: 0;
+    margin-top: 10px;
+    width: 1100px;
+    height: 300px;
+    overflow: hidden;
+   /*background-color: lightcoral;*/
+}
+
+/* 广告区域 */
+.advert {
+    margin-top: 10px;
+    width: 1100px;
+    height: 200px;
+}
+.advertImg {
+    background: url("../img/bgImg/bg4.webp") no-repeat;
+    background-size: 100% 100%;
+}
+.advertImg2 {
+    background: url("../img/bgImg/bg2.png") no-repeat;
+    background-size: 100% 100%;
+}
+.advertImg3 {
+    background: url("../img/bgImg/bg3.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+.advertImg4 {
+    background: url("../img/bgImg/bg6.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+.advertImg5 {
+    background: url("../img/bgImg/bg7.webp") no-repeat;
+    background-size: 100% 100%;
+}
+.advertImg6 {
+    background: url("../img/bgImg/bg8.png") no-repeat;
+    background-size: 100% 100%;
+}
+.advertImg7 {
+    background: url("../img/bgImg/bg9.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.swiper-slide {
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+}
+
+/* 继续阅读 */  /* 前沿艺术 */
+.GotoRead,
+.FrontierArt {
+    position: relative;
+    top: 0;
+    margin-top: 10px;
+    width: 1100px;
+    height: 300px;
+    margin-left: 8px;
+   /*background-color: skyblue;*/
+}
+
+
+
+/* 进度条*/
+.readPlan{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    height: 42%;
+   /* background-color: skyblue;*/
+}
+.readPlan span {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    white-space:nowrap;
+}
+.readPlan .planText2 {
+    margin-left: 60%;
+}
+.readPlan .myProgress {
+    width: 100%;
+    background-color: grey;
+    border-radius: 25px;
+}
+.readPlan .myBar {
+    width: 0;
+    height: 20px;
+    background-color: darkred;
+    border-radius: 25px;
+}
+.readPlan .button {
+    width: 110px;
+    height: 30px;
+    color: #F7F7F7;
+    font-size: 16px;
+    font-weight: 540;
+    background-color: #4B60E2;
+    border: 1px solid skyblue;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.readPlan .button:hover {
+    background-color: #4B40E2;
+}
+/* 添加book */
+.lastCard {
+    background: rgba(40,40,40,.9);
+}
+.lastCard .addbook {
+    width: 100%;
+    height: 100%;
+}
+.lastCard .addbook h3 {
+    margin-top: 10px;
+    text-align: center;
+}
+.lastCard img {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: auto;
+    border-radius: 50px;
+}
+.lastCard img:hover {
+    box-shadow: 5px 5px 5px grey;
+}
+
+/* 前沿艺术 */
+.card-imgArt {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #ffd700;
+    font-size: 14px;
+    overflow: hidden;
+}
+.card .card-imgArt img {
+    width: 100%;
+    height: 100%;
+}
+.card-imgArt .VIP-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 20px;
+    border-radius: 10px 0 0 10px;
+    background-color: #a0a5a8;
+    backdrop-filter: blur(10px);
+}
+.card-imgArt .bot-box {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    color: #000;
+    font-size: 16px;
+    border-radius: 0 10px 10px 0;
+    background-color: #fff;
+    backdrop-filter: blur(20px);
+}
+.card-imgArt .bot-box:hover {
+    color: #181818;
+    font-size: 16px;
+    background-color: #e7e1cd;
+    backdrop-filter: blur(20px);
+}
+.card-imgArt:hover .artTitle {
+    left: 0;
+    opacity: 1;
+    transform: scale(1.2);
+}
+.card-imgArt .artTitle {
+    position: absolute;
+    left:-80%;
+    top: 0;
+    bottom: 0;
+    display: block;
+    height: 75px;
+    width: 80%;
+    text-align: center;
+    background-color: rgba(0,28,60,.2);
+    transition: all .3s ease-in-out;
+    transform: scale(1);
+    font-size: 12px;
+}
+.artTitle h4 {
+    font-size: 16px;
+    margin: 15px 0 8px;
+    line-height: 70px;
+    color: #e0e0e0;
+}
+
+.rsider {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(40,40,40, .6);
+    width: 15%;
+    height: 100vh;
+    text-align: left;
+    z-index: 1;
+    font-size: 14px;
+}
+
+.siderTop {
+    position: absolute;
+    top: 7%;
+    left: 15%;
+
+}
+.siderTop h4 {
+    margin: 10px 0 0 5px;
+    font-size: 16px;
+
+}
+.rsider p {
+    display: inline-block;
+    color: rgba(255,255,255,.8);
+    margin: 8px 0 0 2px;
+    cursor: pointer;
+}
+.rsider p:hover {
+    color: rgba(0,191,255, .8);
+    border-bottom: 1px solid rgba(0,191,255);
+}
+

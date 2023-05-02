@@ -1,0 +1,559 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 62.5%; /*10px*/  /* 1rem = 10px */
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+
+.icon {
+    width: 1.8em;
+    height: 1.6em;
+    font-size: 1.3rem;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+/* flex 布局 */
+.layout {
+    display: flex;
+}
+/* 左侧边 */
+.sidebar {
+    flex: 0 1 30rem;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    border-radius: 2px;
+}
+/* 比例设置 */
+.cale {
+    flex: 0 1 30%;
+}
+
+.section {
+    flex: 1;
+    display: flex;  /* 弹性布局 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 日历部分 */
+.calendar {
+    flex: 30% 0;
+    height: 410px;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    padding: 30px 50px 0 50px;
+}
+.calendar {
+    box-shadow: var(--shadow);
+}
+.calendar-header {
+    background: #9796f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    color: var(--white);
+    padding: 10px;
+    border-radius: 10px;
+}
+.calendar-body {
+    padding: 10px;
+}
+.calendar-week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
+    cursor: pointer;
+    color:rgb(104, 104, 104);
+}
+.calendar-week-days div:hover {
+    color:black;
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
+}
+.calendar-week-days div {
+    display: grid;
+    place-items: center;
+    color: var(--bg-second);
+    height: 50px;
+}
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    color: var(--color-txt);
+}
+.calendar-days div {
+    width: 100%;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 5px 5px 0;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+}
+.month-picker {
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.month-picker:hover {
+    background-color: var(--color-hover);
+}
+.month-picker:hover {
+    color: var(--color-txt);
+}
+.year-picker {
+    display: flex;
+    align-items: center;
+}
+.year-change {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.year-change:hover {
+    background-color: var(--light-btn);
+    transition:all .2s ease-in-out ;
+    transform: scale(1.12);
+}
+.year-change:hover pre {
+    color: var(--bg-body);
+}
+.calendar-footer {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+#year:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all 0.2s ease-in-out;
+}
+.calendar-days div span {
+    position: absolute;
+}
+.calendar-days div:hover {
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    background-color: rgba(150,255,151);
+    border-radius: 20%;
+    color: var(--dark-text);
+}
+.calendar-days div.current-date {
+    color: var(--dark-text);
+    background-color: lawngreen;
+    text-align: center;
+    padding: 4px;
+    border-radius: 20%;
+}
+.month-list {
+    position: relative;
+    left: 0;
+    top: -250px;
+    background-color: #ebebeb;
+    color: var(--light-text);
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px;
+    border-radius: 20px;
+}
+.month-list > div {
+    display: grid;
+    place-content: center;
+    margin: 5px 10px;
+    transition: all 0.2s ease-in-out;
+}
+.month-list > div > div {
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+.month-list > div > div:hover {
+    background-color:var(--light-btn);
+    color: var(--dark-text);
+    transform: scale(0.9);
+    transition: all 0.2s ease-in-out;
+}
+.month-list.show {
+    visibility: visible;
+    pointer-events: visible;
+    transition: 0.6s ease-in-out;
+    animation: to-left .71s forwards;
+}
+.month-list.hideonce{
+    visibility: hidden;
+}
+.month-list.hide {
+    animation: to-right 1s forwards;
+    visibility: hidden;
+    pointer-events: none;
+}
+.date-time-formate {
+    width: max-content;
+    height: max-content;
+    font-family: 'Dubai Light, Century Gothic',serif;
+    position: relative;
+    display: inline;
+    top: 140px;
+    left: 1rem;
+    justify-content: center;
+}
+.day-text-formate {
+    font-family: 'Microsoft JhengHei UI', serif;
+    font-size: 1.4rem;
+    padding-right: 5%;
+    border-right: 3px solid #9796f0;
+    position: absolute;
+    left: 1rem;
+
+}
+.date-time-value {
+    display: block;
+    height: max-content;
+    width: max-content;
+    position: relative;
+    left: 40%;
+    top: -18px;
+    text-align: center;
+}
+.time-formate {
+    font-size: 1.5rem;
+}
+.time-formate.hideTime {
+    animation: hidetime 1.5s forwards;
+}
+.day-text-formate.hidetime {
+    animation: hidetime 1.5s forwards;
+}
+.date-formate.hideTime {
+    animation: hidetime 1.5s forwards;
+}
+.day-text-formate.showtime{
+    animation: showtime 1s forwards;
+}
+.time-formate.showtime {
+    animation: showtime 1s forwards;
+}
+.date-formate.showtime {
+    animation: showtime 1s forwards;
+}
+@keyframes to-top {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+}
+@keyframes to-left {
+    0% {
+        transform: translatex(230%);
+        opacity: 1;
+    }
+    100% {
+        transform: translatex(0);
+        opacity: 1;
+    }
+}
+@keyframes to-right {
+    10% {
+        transform: translatex(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translatex(-150%);
+        opacity: 1;
+    }
+}
+@keyframes showtime {
+    0% {
+        transform: translatex(250%);
+        opacity: 1;
+    }
+    100% {
+        transform: translatex(0%);
+        opacity: 1;
+    }
+}
+@keyframes hidetime {
+    0% {
+        transform: translatex(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translatex(-370%);
+        opacity: 1;
+    }
+}
+@media (max-width:375px) {
+    .month-list>div{
+        margin: 5px 0;
+    }
+}
+
+/* 任务栏 */
+.task {
+    position: relative;
+    flex: 20% 0;
+    background-image: linear-gradient(to right , rgba(230,255,255,.4),rgba(135,206,235,.3) );
+    margin: 3rem 0;
+    height: 23.5%;
+    width: 100%;
+    border-radius: 25px;
+    padding: 5px;
+    overflow: hidden;
+    max-height: 140px;
+}
+.tagBar {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    display: inline-block;
+    width: 60px;
+    height: 130px;
+    font-size: 1.2rem;
+    font-weight: 550;
+    text-align: center;
+    line-height: 130px;
+}
+.rightBar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: calc(100% - 80px);
+    height: 130px;
+    margin-left: 2px;
+}
+.rightBar img {
+    margin: 12px 0 0 15px;
+    height: 80%;
+}
+.rightBar .p-tag-box{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.p-tag-box p {
+    text-align: left;
+    margin-left: 20px;
+    font-size: 14px;
+}
+.rightBar .jind {
+    position: relative;
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 60px;
+    height: 10px;
+    background-color: darkred;
+    border-radius: 10px;
+}
+.jind::before {
+    position: absolute;
+    top: -4px;
+    right: -30px;
+    content: "40%";
+}
+.rightBar .jind2 {
+    position: relative;
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 120px;
+    height: 10px;
+    background-color: darkred;
+    border-radius: 10px;
+}
+.jind2::before {
+    position: absolute;
+    top: -4px;
+    right: -38px;
+    content: "100%";
+}
+
+
+
+
+
+
+
+
+
+
+/* 右中心*/
+.main {
+    flex: 1; /* 自动填满 */
+}
+
+.main-header {
+    text-align: center;
+    border: 1px solid #eee;
+}
+.main-header h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: .2rem 0px;
+    color: rgba(102,139,139);
+}
+.main-header h2 {
+    font-size: 2rem;
+    color: #ccc;
+    font-weight: 300;
+}
+/* main 内容展示区 */
+.content {
+    padding: 2rem;
+}
+.content-title {
+    display: flex;
+    align-items: center;  /* 垂直居中对齐 */
+}
+
+.content-title svg {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1rem;
+}
+.content-title h3 {
+    font-size: 1.8rem;
+    color: rgba(127,255,212);
+}
+.content ul {
+    display: flex;
+    justify-content: space-between;/* 平分剩余空间 */
+    margin: 1rem 0;
+    flex-wrap: wrap; /* 超出范围换行 */
+}
+.content ul li {
+    flex: 0 1 31%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background-color: rgba(227,227,227,.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.content ul li .chartTitle {
+    flex: 0 1 10%;
+    text-align: left;
+    line-height: 25px;
+    margin-left: 1rem;
+}
+.content ul li .chart1,
+.chart2,
+.chart3 {
+    flex: 1;
+}
+
+
+/* 信息数据 */
+.msgBox {
+    display: flex;
+    justify-content: space-between;/* 平分剩余空间 */
+    margin: 1rem 0;
+    flex-wrap: wrap; /* 超出范围换行 */
+}
+.msgBox span {
+    background-color: rgba(227,227,227,.5);
+    flex: 0 1 33%;
+    aspect-ratio: 6/1;
+    border-radius: 10px;
+}
+.msgBox span p {
+    margin: 1.3rem 0 2rem 3rem;
+    font-size: 1.8rem;
+    font-weight: 550;
+    line-height: 2rem;
+}
+.msgBox span p em {
+    color: rgba(0,191,255);
+    margin-right: .2rem;
+    font-size: 2.2rem;
+}
+
+
+.lastTitle {
+    margin-top: 3rem;
+}
+/* 热力图 */
+.TChart {
+    display: flex;
+    justify-content: space-between;/* 平分剩余空间 */
+    margin: 1rem 0;
+    flex-wrap: wrap; /* 超出范围换行 */
+    background-color: rgba(227,227,227,.5);
+    border-radius: 10px;
+}
+.TChart .chartbox {
+    flex: 1;
+    aspect-ratio: 4/0.8;
+}
+
+
+/* 媒体查询 */
+@media (max-width: 1280px){  /* 平板 */
+    .content ul li {
+        flex: 0 1 45%;
+        margin: .7rem 0;
+    }
+    .sidebar {
+        display: none;
+    }
+}
+@media (max-width: 992px){  /* 手机 */
+    .content ul {
+        justify-content: center;
+    }
+    .content ul li {
+        flex: 0 1 60%;
+        margin: 1rem 0;
+    }
+    .content-title {
+        margin-left: 2rem;
+    }
+    .msgBox {
+        justify-content: center;
+    }
+    .msgBox span {
+        flex: 0 1 60%;
+        margin: 1.2rem 0;
+    }
+}
+.layout,
+.sidebar {
+    transition: all .5s ease;
+}
+
+
+
+
